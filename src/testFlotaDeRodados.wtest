@@ -1,0 +1,110 @@
+import otrosRodados.*
+import trafic.*
+import dependencia.*
+
+
+test "Dependencia Deportes" {
+
+	dependencia.agregarEmpleados(45)
+	const cachito = new ChevroletCorsa()
+	cachito.asignarColor(rojo)
+	
+	const chevroletCorsaClassic = new ChevroletCorsa()
+	chevroletCorsaClassic.asignarColor(azul)
+	
+	const chevroletCorsa3Puertas = new ChevroletCorsa()
+	chevroletCorsa3Puertas.asignarColor(verde)
+	
+	const renaultKwidZen = new RenaultKwid()
+	renaultKwidZen.colocarTanque()
+	
+	/* Auto especial */
+	const aircross = new AutosEspeciales()
+	aircross.setearCapacidad(5)
+	aircross.setearVelocidad(160)
+	aircross.setearPeso(1200)
+	aircross.setearColor(beige)
+	
+	/*  Agregando los vehiculos a la flota */ 
+	dependencia.agregarAFlota(cachito)
+	dependencia.agregarAFlota(chevroletCorsaClassic)
+	dependencia.agregarAFlota(chevroletCorsa3Puertas)
+	dependencia.agregarAFlota(renaultKwidZen)
+	dependencia.agregarAFlota(aircross)
+	
+	/* Test: Peso */
+	assert.equals(6450, dependencia.pesoTotalFlota())
+	
+	/* Test: Esta bien equipada o no. */
+	
+	assert.that(dependencia.estaBienEquipada())
+	
+	/* Test: Capacidad en color azul. */
+	
+	assert.equals(7, dependencia.capacidadTotalEnColor(azul))
+	
+	/* Test: Color del rodado mas Rapido. */
+	
+	assert.equals(beige, dependencia.colorDelRodadoMasRapido())
+	
+	/* Test: Es grande o no. */
+	
+	assert.that(dependencia.esGrande())
+	
+	/* Test: Capacidad Faltante */
+	
+	assert.equals(25, dependencia.capacidadFaltante())
+}
+
+
+test "Dependencia Cultura "{
+	
+	dependencia.agregarEmpleados(31)
+	const cachito = new ChevroletCorsa()
+	cachito.asignarColor(rojo)
+	
+	const renaultKwidZen = new RenaultKwid()
+	renaultKwidZen.colocarTanque()
+	
+	const renaultKwidIntens = new RenaultKwid()
+	renaultKwidIntens.colocarTanque()
+	
+	const renaultKwidOutsider = new RenaultKwid()
+	
+	trafic.colocarInteriorPopular()
+	trafic.colocarMotorBataton()
+	
+	/*  Agregando los vehiculos a la flota */ 
+	dependencia.agregarAFlota(cachito)
+	dependencia.agregarAFlota(renaultKwidZen)
+	dependencia.agregarAFlota(renaultKwidIntens)
+	dependencia.agregarAFlota(renaultKwidOutsider)
+	dependencia.agregarAFlota(trafic)
+	
+	/* Test: Peso */
+	assert.equals(10700, dependencia.pesoTotalFlota())
+	
+	/* Test: Esta bien equipada o no. */
+	
+	assert.notThat(dependencia.estaBienEquipada())
+	
+	/* Test: Capacidad en color azul. */
+	
+	assert.equals(10, dependencia.capacidadTotalEnColor(azul))
+	
+	/* Test: Color del rodado mas Rapido. */
+	
+	assert.equals(rojo, dependencia.colorDelRodadoMasRapido())
+	
+	/* Test: Es grande o no. */
+	
+	assert.notThat(dependencia.esGrande())
+	
+	/* Test: Capacidad Faltante */
+	
+	assert.equals(5, dependencia.capacidadFaltante())
+}
+	
+	
+	
+
